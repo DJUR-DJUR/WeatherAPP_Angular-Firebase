@@ -2,6 +2,7 @@ const { writeFile } = require('fs');
 const { argv } = require('yargs');
 // read environment variables from .env file
 require('dotenv').config();
+console.log(process.env) // remove this after you've confirmed it is working
 // read the command line arguments passed with yargs
 const environment = argv.environment;
 const isProduction = environment === 'prod';
