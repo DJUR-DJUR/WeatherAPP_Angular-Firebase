@@ -8,12 +8,10 @@ require('dotenv').config();
 const environment = argv.environment;
 const isProduction = environment === 'prod';
 
-console.log(process.env) // remove this after you've confirmed it is working
-
-// if (!process.env["API_KEY"] || !process.env["API_URL"]) {
-//   console.error('All the required environment variables were not provided!');
-//   process.exit(-1);
-// }
+if (!process.env["API_KEY"] || !process.env["API_URL"]) {
+  console.error('All the required environment variables were not provided!');
+  process.exit(-1);
+}
 
 const targetPath = isProduction
    ? `./src/environments/environment.prod.ts`
