@@ -1,0 +1,11 @@
+<div class="container d-flex fd-column j-betweene a-center" [class.active]="isActive">
+  <div>
+    <img src="/assets/images/new/{{currentDay.day.icon}}-s.png" [alt]="currentDay.day.iconPhrase">
+    <img src="/assets/images/new/{{currentDay.night.icon}}-s.png" [alt]="currentDay.night.iconPhrase">
+  </div>
+  <div class="temp">
+    {{currentDay.maxTemper| number: '1.0-0'}} °{{currentDay.unit}}/
+    {{currentDay.minTemper| number: '1.0-0'}} °{{currentDay.unit}}
+  </div>
+  <div class="weekDay">{{currentDay.date | date: 'EEE' : '' : local}}</div>
+</div>

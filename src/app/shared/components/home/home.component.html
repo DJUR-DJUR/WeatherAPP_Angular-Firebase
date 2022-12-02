@@ -1,0 +1,34 @@
+<div class="container d-flex fw-wrap">
+  <section class="section left">
+    <app-header [currentLocal]="selectedLocal"></app-header>
+    <button (click)="changeUnit()">Change Unit</button>
+    <button (click)="changeLanguageToUa()">UA</button>
+    <button (click)="changeLanguageToEn()">EN</button>
+    <ng-container *ngIf="!loadingData; else loading">
+      <ng-container *ngIf="getWeatherDays?.length; else empty">
+        <app-days-slider
+          [currentLocal]="selectedLocal"
+          [weatherDays]="getWeatherDays"
+          (onSelect)="setSelectedDay($event)"
+        ></app-days-slider>
+      </ng-container>
+    </ng-container>
+  </section>
+  <ng-container *ngIf="!loadingData">
+    <section *ngIf="selectedDay" class="section right">
+      <app-sidebar
+        [currentLocal]="selectedLocal"
+        [currentDay]="selectedDay"></app-sidebar>
+    </section>
+  </ng-container>
+</div>
+<ng-template #loading>
+  <div>
+    Loading...
+  </div>
+</ng-template>
+<ng-template #empty>
+  <div>
+    No Data...
+  </div>
+</ng-template>

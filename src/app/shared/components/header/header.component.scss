@@ -1,0 +1,28 @@
+// .container {
+//   width: 493px;
+//   height: 274px;
+//   margin-left: 78px;
+//   margin-top: 94px;
+//   background: rgba(250, 255, 19, 0.61);
+//   filter: blur(125px);
+// }
+
+.text-shadow {
+  text-shadow: 0px 5px 5px rgb(0 0 0 / 40%);
+  margin-bottom: 15px;
+}
+
+.text-dark {
+  color: var(--dark-color);
+  margin-bottom: 15px;
+}
+
+.greeting {
+  margin-bottom: 54px;
+}
+
+.img-greeting {
+  // width: 55px;
+  // height: 50px;
+  margin-right: 9px;
+}

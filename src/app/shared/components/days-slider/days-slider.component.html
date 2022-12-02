@@ -1,0 +1,9 @@
+<div class="container d-flex j-betweene fw-wrap">
+  <div *ngFor="let item of weatherDays" (click)="onItemClick(item)" class="clickable">
+    <app-day
+      [local]="currentLocal"
+      [currentDay]="item"
+      [isActive]="isSelectedItem(item)"
+    ></app-day>
+  </div>
+</div>

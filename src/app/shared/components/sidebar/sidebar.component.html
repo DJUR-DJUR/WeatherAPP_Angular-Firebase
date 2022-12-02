@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="location-search d-flex j-betweene a-center">
+    <img src="/assets/images/location.png" alt="location">
+    <div class="location-city">Dnipro city, Ukraine</div>
+    <img src="/assets/images/done.png" alt="done">
+  </div>
+  <div class="daily d-flex fd-column j-betweene a-center">
+    <div class="daily-location d-flex a-center">
+      <img src="/assets/images/location.png" alt="location">
+      <div class="daily-city">Dnipro city, Ukraine</div>
+    </div>
+    <div>
+      <img
+        src="/assets/images/new/{{currentDay.day.icon}}-s.png"
+        [alt]="currentDay.day.iconPhrase" class="big-weatherCode"
+      >
+      <img
+        src="/assets/images/new/{{currentDay.night.icon}}-s.png"
+        [alt]="currentDay.night.iconPhrase" class="big-weatherCode"
+      >
+    </div>
+    <h2>{{currentDay.date | date: 'longDate' : '' : currentLocal}}</h2>
+    <h1>{{currentDay.maxTemper | number: '1.0-0'}} °{{currentDay.unit}}/
+        {{currentDay.minTemper | number: '1.0-0'}} °{{currentDay.unit}}
+    </h1>
+    <div>
+      <h3>{{currentDay.day.iconPhrase}}/
+          {{currentDay.night.iconPhrase}}
+      </h3>
+    </div>
+    <div class="daily-weather d-flex j-betweene a-center">
+      <div class="daily-item d-flex">
+        <div class="wrap d-flex fd-column j-betweene">
+          <img src="/assets/images/wind.png" alt="wind" class="daily-img">
+          <img src="/assets/images/rain.png" alt="rain">
+        </div>
+        <div class="wrap d-flex fd-column j-betweene">
+          <div class="name">Wind</div>
+          <div class="name">Rain sum</div>
+        </div>
+      </div>
+      <div class="slash"></div>
+      <div class="daily-item d-flex">
+        <div class="wrap d-flex fd-column j-betweene">
+          <div class="data daily-img">12</div>
+          <div class="data">35</div>
+        </div>
+        <div class="wrap d-flex fd-column j-betweene">
+          <div class="units">km/h</div>
+          <div class="units">mm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
