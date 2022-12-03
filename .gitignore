@@ -46,6 +46,6 @@ Thumbs.db
 keys
 keys.ts
 .env
-
+setenv.ts
 /src/environments/**
 
