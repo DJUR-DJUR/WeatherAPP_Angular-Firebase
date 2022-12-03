@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master 
+    - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
-        node-version: '12.x'
+        node-version: '16.x'
     - run: node scripts/weatherAPI.js
       env:
         WEATHER_API_DETAILS: ${{ secrets.WEATHER_API_DETAILS }}
