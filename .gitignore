@@ -47,5 +47,5 @@ keys
 keys.ts
 .env
 
-# environment.ts
-# environment.prod.ts
+/src/environments/**
+
