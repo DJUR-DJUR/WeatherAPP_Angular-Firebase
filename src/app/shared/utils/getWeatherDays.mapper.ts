@@ -15,6 +15,6 @@ import { ResponseWeatherForDay, WeatherForDay } from "../interfaces/interfaces"
         maxTemper: day.Temperature.Maximum.Value,
         minTemper: day.Temperature.Minimum.Value,
         unit: day.Temperature.Maximum.Unit,
-      }
-    })
-  }
+      };
+    });
+  };

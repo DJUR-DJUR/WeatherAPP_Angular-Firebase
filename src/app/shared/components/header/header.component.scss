@@ -9,20 +9,21 @@
 
 .text-shadow {
   text-shadow: 0px 5px 5px rgb(0 0 0 / 40%);
-  margin-bottom: 15px;
+  margin-bottom: 24px;
 }
 
 .text-dark {
   color: var(--dark-color);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .greeting {
-  margin-bottom: 54px;
+  margin-bottom: 18px;
+  font-weight: 700;
 }
 
-.img-greeting {
-  // width: 55px;
-  // height: 50px;
-  margin-right: 9px;
-}
+// .img-greeting {
+//   // width: 55px;
+//   // height: 50px;
+//   margin-right: 9px;
+// }

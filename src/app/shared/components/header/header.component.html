@@ -1,8 +1,10 @@
-<div class="container">
+<div class="container d-flex fd-column a-center j-betweene">
   <h1 class="text-shadow">{{dateNow| date: 'shortTime'}}</h1>
-  <div class="text-dark">{{dateNow| date: 'fullDate' : '' : currentLocal}}</div>
   <div class="greeting d-flex a-center">
-    <img src="/assets/images/greeting.png" alt="greeting" class="img-greeting">
+    <!-- <img src="/assets/images/greeting.png" alt="greeting" class="img-greeting"> -->
     <h3>Good morning !!!</h3>
+  </div>
+  <div class="text-dark">
+    <h4>{{dateNow| date: 'fullDate' : '' : currentLocal}}</h4>
   </div>
 </div>

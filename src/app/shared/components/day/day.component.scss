@@ -1,7 +1,7 @@
 .container {
-  padding: 22px 25px;
-  margin: 0 24px 24px 0;
-  gap: 16px;
+  padding: 11px 12px;
+  margin: 0 20px 20px 0;
+  gap: 8px;
   background: var(--white-color);
   box-shadow: 2px 2px 4px rgba(64, 82, 251, 0.27);
   border-radius: 20px;
@@ -12,11 +12,21 @@
   }
 }
 
+.image-wrap {
+  // margin-bottom: 8px;
+
+  img {
+    // width: 20px;
+    height: 20px;
+  }
+}
+
 .temp {
-  line-height: 26px;
+  font-size: 10px;
+  line-height: 13px;
 }
 
 .weekDay {
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 13px;
+  line-height: 16px;
 }

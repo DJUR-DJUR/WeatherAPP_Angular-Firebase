@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { QuerryParams, WeatherForDay } from '../../interfaces/interfaces';
+import { mockWeatherForDay } from '../../mocks/mock';
 import { WeatherService } from '../../services/weather.service';
 import { getWeatherDaysMapper } from '../../utils/getWeatherDays.mapper';
 
@@ -21,6 +22,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public getWeatherDays!: WeatherForDay[];
   public selectedDay!: WeatherForDay;
   public selectedLocal = 'en';
+
+  public selectedEn = true;
+  public selectedUa = false;
 
   public loadingData = false;
   private sub!: Subscription;
@@ -46,16 +50,27 @@ export class HomeComponent implements OnInit, OnDestroy {
   changeLanguageToUa(): void {
     this.querryLanguage = 'uk-ua';
     this.selectedLocal = 'uk';
+    this.selectedUa = true;
+    this.selectedEn = false;
     this.getDailyWeather();
   }
 
   changeLanguageToEn(): void {
     this.querryLanguage = 'en-us';
     this.selectedLocal = 'en';
+    this.selectedUa = false;
+    this.selectedEn = true;
     this.getDailyWeather();
   }
 
   getDailyWeather() {
+
+  if (mockWeatherForDay) {
+    this.getWeatherDays = mockWeatherForDay;
+    this.selectedDay = this.getWeatherDays[0];
+    return
+  }
+
     const querryParams: QuerryParams = {
       apikey: environment.API_KEY,
       language: this.querryLanguage,

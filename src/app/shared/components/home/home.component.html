@@ -2,8 +2,6 @@
   <section class="section left">
     <app-header [currentLocal]="selectedLocal"></app-header>
     <button (click)="changeUnit()">Change Unit</button>
-    <button (click)="changeLanguageToUa()">UA</button>
-    <button (click)="changeLanguageToEn()">EN</button>
     <ng-container *ngIf="!loadingData; else loading">
       <ng-container *ngIf="getWeatherDays?.length; else empty">
         <app-days-slider
@@ -16,6 +14,17 @@
   </section>
   <ng-container *ngIf="!loadingData">
     <section *ngIf="selectedDay" class="section right">
+      <div class="sidebar-header d-flex j-betweene">
+        <div class="header-item d-flex j-betweene a-center">
+          <img src="/assets/images/location.png" alt="location">
+          <div class="location-city">Dnipro city, Ukraine</div>
+          <img src="/assets/images/done.png" alt="done">
+        </div>
+        <div class="header-item d-flex j-betweene a-center">
+          <button (click)="changeLanguageToUa()" class="btn btn-primary" [class.btn-active]="selectedUa">UA</button>
+          <button (click)="changeLanguageToEn()" class="btn btn-primary" [class.btn-active]="selectedEn">EN</button>
+        </div>
+      </div>
       <app-sidebar
         [currentLocal]="selectedLocal"
         [currentDay]="selectedDay"></app-sidebar>
