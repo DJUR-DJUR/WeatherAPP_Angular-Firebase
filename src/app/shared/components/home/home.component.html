@@ -21,8 +21,13 @@
           <img src="/assets/images/done.png" alt="done">
         </div>
         <div class="header-item d-flex j-betweene a-center">
-          <button (click)="changeLanguageToUa()" class="btn btn-primary" [class.btn-active]="selectedUa">UA</button>
-          <button (click)="changeLanguageToEn()" class="btn btn-primary" [class.btn-active]="selectedEn">EN</button>
+          <div *ngFor="let item of languages" (click)="changeLanguage(item)">
+            <app-button
+              buttonClass="btn btn-primary"
+              [buttonText]="item"
+              [isActive]="isSelectedLanguage(item)">
+            </app-button>
+          </div>
         </div>
       </div>
       <app-sidebar

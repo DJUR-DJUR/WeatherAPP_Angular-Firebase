@@ -9,7 +9,8 @@ import { DayComponent } from './components/day/day.component';
 import { HttpClientModule } from "@angular/common/http";
 
 import { registerLocaleData } from '@angular/common';
-import LocaleUa from '@angular/common/locales/uk'
+import LocaleUa from '@angular/common/locales/uk';
+import { ButtonComponent } from './components/button/button.component'
 registerLocaleData(LocaleUa);
 
 @NgModule({
@@ -18,7 +19,8 @@ registerLocaleData(LocaleUa);
     SidebarComponent,
     HeaderComponent,
     DaysSliderComponent,
-    DayComponent
+    DayComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,

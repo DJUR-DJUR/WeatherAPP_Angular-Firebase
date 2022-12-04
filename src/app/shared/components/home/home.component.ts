@@ -17,14 +17,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private currentCity = '322722';
 
+  public languages = ['uk', 'en'];
+  private selectedLanguage = 'en';
+  public selectedLocal = 'en';
+
   private querryMetricUnit = true;
   private querryLanguage = 'en-us';
   public getWeatherDays!: WeatherForDay[];
   public selectedDay!: WeatherForDay;
-  public selectedLocal = 'en';
-
-  public selectedEn = true;
-  public selectedUa = false;
 
   public loadingData = false;
   private sub!: Subscription;
@@ -38,46 +38,45 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getDailyWeather();
   }
 
-  setSelectedDay(item: WeatherForDay): void {
+  public setSelectedDay(item: WeatherForDay): void {
     this.selectedDay = item;
   }
 
-  changeUnit(): void {
+  public changeUnit(): void {
     this.querryMetricUnit = !this.querryMetricUnit;
     this.getDailyWeather();
   }
 
-  changeLanguageToUa(): void {
-    this.querryLanguage = 'uk-ua';
-    this.selectedLocal = 'uk';
-    this.selectedUa = true;
-    this.selectedEn = false;
+  public changeLanguage(item: string): void {
+    this.selectedLanguage = item;
+    this.selectedLocal = item;
+    switch (item) {
+      case 'uk':
+        this.querryLanguage = 'uk-ua';
+        break;
+      case 'en':
+        this.querryLanguage = 'en-us';
+        break;
+    }
     this.getDailyWeather();
   }
 
-  changeLanguageToEn(): void {
-    this.querryLanguage = 'en-us';
-    this.selectedLocal = 'en';
-    this.selectedUa = false;
-    this.selectedEn = true;
-    this.getDailyWeather();
+  public isSelectedLanguage(item: string): boolean {
+    return this.selectedLanguage === item;
   }
 
-  getDailyWeather() {
-
+  private getDailyWeather(): void {
   if (mockWeatherForDay) {
     this.getWeatherDays = mockWeatherForDay;
     this.selectedDay = this.getWeatherDays[0];
-    return
-  }
-
+    return;
+  };
     const querryParams: QuerryParams = {
       apikey: environment.API_KEY,
       language: this.querryLanguage,
       details: false,
       metric: this.querryMetricUnit,
-    }
-
+    };
     this.loadingData = true;
     this.sub = this.weather
       .getDailyWeather(
@@ -96,8 +95,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.loadingData = false;
           this.cd.detectChanges();
         }
-      })
-
+      });
   }
 
   ngOnDestroy(): void {
