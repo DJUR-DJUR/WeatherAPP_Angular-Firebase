@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.cd.detectChanges();
           },
         error: (e: HttpErrorResponse) => {
-          console.log(e);
+          console.log('This is component Error', e);
           this.loadingData = false;
           this.cd.detectChanges();
         }
