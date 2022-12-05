@@ -6,14 +6,14 @@ export const mockWeatherForDay = undefined
 //     date: '2020-07-10 15:00:00.000',
 //     day : {
 //       icon: 5 ,
-//       iconPhrase: 'mock Phrase'
+//       iconPhrase: 'time to go for a walk'
 //       },
 //     night: {
 //       icon: 20 ,
-//       iconPhrase: 'mock Phrase2'
+//       iconPhrase: 'time to die'
 //       },
-//     maxTemper: 5,
-//     minTemper: -6,
+//     maxTemper: -400,
+//     minTemper: -600,
 //     unit: 'C',
 //   },
 //   {
