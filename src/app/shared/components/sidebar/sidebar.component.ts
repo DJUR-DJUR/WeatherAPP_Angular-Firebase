@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { WeatherForDay } from '../../interfaces/interfaces';
+import { Location, WeatherForDay } from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,5 +14,8 @@ export class SidebarComponent {
 
   @Input()
   public currentDay!: WeatherForDay;
+
+  @Input()
+  public currentLocation!: Location;
 
 }
