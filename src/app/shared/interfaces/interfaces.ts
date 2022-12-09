@@ -1,3 +1,27 @@
+export interface Location {
+  locationKey: string,
+  locationType: string,
+  localizedName: string,
+  countryID: string,
+  countryName: string
+}
+
+export interface LocationQuerryParams {
+  apikey: string,
+  language: string,
+  q: string
+}
+
+export interface ResponseLocation {
+  Key: string,
+  Type: string,
+  LocalizedName: string,
+  Country: {
+    ID: string,
+    LocalizedName: string,
+  }
+}
+
 export interface WeatherForDay {
   date: string,
   day : TimesOfDay,
@@ -12,7 +36,7 @@ export interface TimesOfDay {
   iconPhrase: string
 }
 
-export interface QuerryParams {
+export interface WeatherQuerryParams {
   apikey: string,
   language: string,
   details: boolean,

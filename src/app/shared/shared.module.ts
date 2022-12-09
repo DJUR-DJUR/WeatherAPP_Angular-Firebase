@@ -13,6 +13,7 @@ import { ButtonComponent } from './components/button/button.component'
 
 import { registerLocaleData } from '@angular/common';
 import LocaleUa from '@angular/common/locales/uk';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 registerLocaleData(LocaleUa);
 
 @NgModule({
@@ -28,7 +29,9 @@ registerLocaleData(LocaleUa);
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AppRoutingModule,

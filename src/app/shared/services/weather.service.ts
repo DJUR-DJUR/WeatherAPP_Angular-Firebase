@@ -1,7 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { getLocationsMapper } from '../utils/getLocations.mapper';
 import { NotificationService } from './notification.service';
 
 @Injectable({
@@ -24,7 +25,7 @@ export class WeatherService {
   }
 
   getDailyWeather(city: string, params: any): Observable<any> {
-    return this.http.get(`${environment.API_URL}${city}`, {params})
+    return this.http.get(`${environment.API_URL}/forecasts/v1/daily/5day/${city}`, {params})
     .pipe(
       // map(this.pipeCallback.bind(this)),
       catchError(this.errorHandler.bind(this))
@@ -35,6 +36,13 @@ export class WeatherService {
     //   return throwError(error)
     //   })
     // );
+  }
+
+  getLocation(params: any): Observable<any> {
+    return this.http.get(`${environment.API_URL}/locations/v1/cities/autocomplete`, {params})
+    .pipe(
+      catchError(this.errorHandler.bind(this))
+    );
   }
 
     // private pipeCallback(data: any): Observable<any> {

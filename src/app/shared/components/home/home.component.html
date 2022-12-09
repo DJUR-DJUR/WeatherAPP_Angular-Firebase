@@ -2,22 +2,35 @@
   <section class="section left">
     <app-header [currentLocal]="selectedLocal"></app-header>
     <button (click)="changeUnit()">Change Unit</button>
-    <ng-container *ngIf="!loadingData; else loading">
-      <ng-container *ngIf="getWeatherDays?.length; else empty">
+    <ng-container *ngIf="!loadingWeather; else loading">
+      <ng-container *ngIf="receivedWeatherDays?.length; else empty">
         <app-days-slider
           [currentLocal]="selectedLocal"
-          [weatherDays]="getWeatherDays"
+          [weatherDays]="receivedWeatherDays"
           (onSelect)="setSelectedDay($event)"
         ></app-days-slider>
       </ng-container>
     </ng-container>
   </section>
-  <ng-container *ngIf="!loadingData">
-    <section *ngIf="selectedDay" class="section right">
+    <section class="section right">
       <div class="sidebar-header d-flex j-betweene">
         <div class="header-item d-flex j-betweene a-center">
           <img src="/assets/images/location.png" alt="location">
-          <div class="location-city">Dnipro city, Ukraine</div>
+          <div class="input-wraper">
+            <input
+            class="form-control"
+            [formControl]="searchLocation"
+            placeholder="Location"
+            type="text"
+          >
+            <ul *ngIf="receivedLocations">
+              <li *ngFor="let item of receivedLocations" class="nav-item">
+                <a (click)="selectLocation(item)">
+                  {{item.localizedName}}, {{item.countryName}}
+                </a>
+              </li>
+            </ul>
+          </div>
           <img src="/assets/images/done.png" alt="done">
         </div>
         <div class="header-item d-flex j-betweene a-center">
@@ -30,11 +43,15 @@
           </div>
         </div>
       </div>
-      <app-sidebar
-        [currentLocal]="selectedLocal"
-        [currentDay]="selectedDay"></app-sidebar>
+      <ng-container *ngIf="selectedDay" >
+        <app-sidebar
+          [currentLocal]="selectedLocal"
+          [currentDay]="selectedDay"
+          [currentLocation]="currentLocation"
+        >
+        </app-sidebar>
+      </ng-container>
     </section>
-  </ng-container>
 </div>
 <ng-template #loading>
   <div>

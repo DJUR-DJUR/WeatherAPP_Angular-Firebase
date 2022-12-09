@@ -2,7 +2,10 @@
   <div class="daily d-flex fd-column j-betweene a-center">
     <div class="daily-location d-flex a-center">
       <img src="/assets/images/location-big.png" alt="location">
-      <div class="daily-city">Dnipro city, Ukraine</div>
+      <div class="daily-city">
+        {{ currentLocation.localizedName }},
+        {{currentLocation.countryName}}
+      </div>
     </div>
     <div class="img-wrap">
       <img
