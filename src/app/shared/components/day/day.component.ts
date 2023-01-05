@@ -10,7 +10,7 @@ import { WeatherForDay } from '../../interfaces/interfaces';
 export class DayComponent {
 
   @Input()
-  public local!: string;
+  public local: string = '';
 
   @Input()
   public currentDay!: WeatherForDay;

@@ -1,10 +1,15 @@
 <div class="container d-flex fd-column a-center j-betweene">
-  <h1 class="text-shadow">{{dateNow| date: 'shortTime'}}</h1>
+  <h1 class="text-shadow">{{dateNow | date: 'shortTime' : '' : currentLocal}}</h1>
   <div class="greeting d-flex a-center">
     <!-- <img src="/assets/images/greeting.png" alt="greeting" class="img-greeting"> -->
-    <h3>{{ greeting }}</h3>
+    <ng-container *ngIf="currentLocal === 'en'">
+      <h3>{{ greetingEn }}</h3>
+    </ng-container>
+    <ng-container *ngIf="currentLocal === 'uk'">
+      <h3>{{ greetingUk }}</h3>
+    </ng-container>
   </div>
   <div class="text-dark">
-    <h4>{{dateNow| date: 'fullDate' : '' : currentLocal}}</h4>
+    <h4>{{dateNow | date: 'fullDate' : '' : currentLocal}}</h4>
   </div>
 </div>

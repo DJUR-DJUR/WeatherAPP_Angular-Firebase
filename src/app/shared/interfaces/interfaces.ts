@@ -1,65 +1,65 @@
 export interface Location {
-  locationKey: string,
-  locationType: string,
-  localizedName: string,
-  countryID: string,
-  countryName: string
+  readonly locationKey: string,
+  readonly locationType: string,
+  readonly localizedName: string,
+  readonly countryID: string,
+  readonly countryName: string
 }
 
 export interface LocationQuerryParams {
-  apikey: string,
-  language: string,
-  q: string
+  readonly apikey: string,
+  readonly language: string,
+  readonly q: string
 }
 
 export interface ResponseLocation {
-  Key: string,
-  Type: string,
-  LocalizedName: string,
-  Country: {
-    ID: string,
-    LocalizedName: string,
+  readonly Key: string,
+  readonly Type: string,
+  readonly LocalizedName: string,
+  readonly Country: {
+    readonly ID: string,
+    readonly LocalizedName: string,
   }
 }
 
 export interface WeatherForDay {
-  date: string,
-  day : TimesOfDay,
-  night: TimesOfDay,
-  maxTemper: number,
-  minTemper: number,
-  unit: string,
-}
-
-export interface TimesOfDay {
-  icon: number,
-  iconPhrase: string
+  readonly date: string,
+  readonly day : TimesOfDay,
+  readonly night: TimesOfDay,
+  readonly maxTemper: number,
+  readonly minTemper: number,
+  readonly unit: string,
 }
 
 export interface WeatherQuerryParams {
-  apikey: string,
-  language: string,
-  details: boolean,
-  metric: boolean,
+  readonly apikey: string,
+  readonly language: string,
+  readonly details: boolean,
+  readonly metric: boolean,
 }
 
 export interface ResponseWeatherForDay {
-  Date: string,
-  Day: {
-    Icon: number,
-    IconPhrase: string
+  readonly Date: string,
+  readonly Day: {
+    readonly Icon: number,
+    readonly IconPhrase: string
   },
-  Night: {
-    Icon: number,
-    IconPhrase: string
+  readonly Night: {
+    readonly Icon: number,
+    readonly IconPhrase: string
   },
-  Temperature: {
-    Maximum: {
-      Value: number,
-      Unit: string
+  readonly Temperature: {
+    readonly Maximum: {
+      readonly Value: number,
+      readonly Unit: string
     },
-    Minimum: {
-      Value: number
+    readonly Minimum: {
+      readonly Value: number
     }
   }
+}
+
+interface TimesOfDay {
+  readonly icon: number,
+  readonly iconPhrase: string
 }

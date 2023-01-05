@@ -10,7 +10,7 @@ import { Location, WeatherForDay } from '../../interfaces/interfaces';
 export class SidebarComponent {
 
   @Input()
-  public currentLocal!: string;
+  public currentLocal: string = '';
 
   @Input()
   public currentDay!: WeatherForDay;

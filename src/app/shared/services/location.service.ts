@@ -7,15 +7,15 @@ import { NotificationService } from './notification.service';
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService {
+export class LocationService {
 
   constructor(
     private http: HttpClient,
     private notification: NotificationService
   ) { }
 
-  public getDailyWeather(city: string, params: any): Observable<any> {
-    return this.http.get(`${environment.API_URL}/forecasts/v1/daily/5day/${city}`, { params })
+  public getLocation(params: any): Observable<any> {
+    return this.http.get(`${environment.API_URL}/locations/v1/cities/autocomplete`, { params })
       .pipe(
         catchError(this.errorHandler.bind(this))
       );
@@ -28,5 +28,4 @@ export class WeatherService {
     // Rethrow it back to component
     throw err;
   }
-
 }

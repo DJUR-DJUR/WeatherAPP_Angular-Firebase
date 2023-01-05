@@ -9,16 +9,16 @@ export class NotificationService {
   duration = 6000;
   buttonText = 'ok';
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) { }
+
+  public throwError(message: string): void {
+    this.openSnackBar(`Error: ${message}`, this.buttonText);
+  }
 
   private openSnackBar(message: string, action: string): void {
-    this._snackBar.open(message, action, {
+    this.snackBar.open(message, action, {
       duration: this.duration,
       verticalPosition: this.verticalPosition,
     });
-  }
-
-  throwError(message: string): void {
-    this.openSnackBar(`Error: ${message}`, this.buttonText);
   }
 }

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { map, Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,26 +7,50 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit, OnDestroy {
 
   @Input()
-  public currentLocal!: string;
+  public currentLocal = 'en';
+  public dateNow = new Date();
+  public greetingEn = '';
+  public greetingUk = '';
+  private subscription!: Subscription;
 
-  public dateNow = new Date;
-
-  public greeting!: string;
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    const timeNow = this.dateNow.getHours();
-    if (timeNow >= 5 && timeNow < 11) {
-      this.greeting = 'Good Morning!!!';
-    } else if (timeNow >= 11 && timeNow < 17) {
-      this.greeting = 'Good Afternoon!!!';
-    } else if (timeNow >= 17 && timeNow < 23) {
-      this.greeting = 'Good Evening!!!';
-    } else if (timeNow >= 23 ||timeNow < 5) {
-      this.greeting = 'Good Night!!!';
-    };
+    this.subscription = timer(0, 1000)
+      .pipe(
+        map(() => new Date())
+      )
+      .subscribe(time => {
+        this.dateNow = time;
+        let currentHour = time.getHours();
+
+        switch (true) {
+          case currentHour >= 5 && currentHour < 11:
+            this.greetingEn = 'Good Morning!!!';
+            this.greetingUk = 'Доброго ранку!!!'
+            break;
+          case currentHour >= 11 && currentHour < 17:
+            this.greetingEn = 'Good Afternoon!!!';
+            this.greetingUk = 'Доброго дня!!!';
+            break;
+          case currentHour >= 17 && currentHour < 23:
+            this.greetingEn = 'Good Evening!!!';
+            this.greetingUk = 'Добрий вечір!!!';
+            break;
+          case currentHour >= 23 || currentHour < 5:
+            this.greetingEn = 'Good Night!!!';
+            this.greetingUk = 'Доброї ночі!!!';
+            break;
+        };
+        this.cd.detectChanges();
+      })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

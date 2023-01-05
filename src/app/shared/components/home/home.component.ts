@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged, filter, Subscription, switchMap } f
 import { environment } from 'src/environments/environment';
 import { Location, LocationQuerryParams, WeatherForDay, WeatherQuerryParams } from '../../interfaces/interfaces';
 import { mockWeatherForDay } from '../../mocks/mock';
+import { LocationService } from '../../services/location.service';
 import { WeatherService } from '../../services/weather.service';
 import { getLocationsMapper } from '../../utils/getLocations.mapper';
 import { getWeatherDaysMapper } from '../../utils/getWeatherDays.mapper';
@@ -18,24 +19,23 @@ import { getWeatherDaysMapper } from '../../utils/getWeatherDays.mapper';
 export class HomeComponent implements OnInit, OnDestroy {
 
   public searchLocation!: FormControl;
-  public receivedLocations!: Location[];
+  public receivedLocations: Location[] = [];
   public currentLocation!: Location;
-
   public languages = ['uk', 'en'];
-  private selectedLanguage = 'en';
   public selectedLocal = 'en';
+  public receivedWeatherDays: WeatherForDay[] = [];
+  public selectedDay!: WeatherForDay;
+  public loadingWeather = false;
 
+  private selectedLanguage = 'en';
   private querryMetricUnit = true;
   private querryLanguage = 'en-us';
-  public receivedWeatherDays!: WeatherForDay[];
-  public selectedDay!: WeatherForDay;
-
-  public loadingWeather = false;
   private getWeatherSub!: Subscription;
   private getLocationSub!: Subscription;
 
   constructor(
-    private weather: WeatherService,
+    private locationService: LocationService,
+    private weatherService: WeatherService,
     private cd: ChangeDetectorRef
   ) { }
 
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             language: this.querryLanguage,
             q: searchText
           };
-          return this.weather.getLocation(querryParams);
+          return this.locationService.getLocation(querryParams);
         }))
       .subscribe({
         next: response => {
@@ -70,10 +70,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public selectLocation(item: Location): void {
     this.currentLocation = item;
-    this.searchLocation.setValue('');
-    this.receivedLocations = [];
-    this.cd.detectChanges();
+    this.clearSearchLocation();
     this.getDailyWeather();
+    // this.cd.detectChanges();
   }
 
   public changeUnit(): void {
@@ -92,8 +91,9 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.querryLanguage = 'en-us';
         break;
     }
-    this.getDailyWeather();
-    this.cd.detectChanges();
+    if (this.currentLocation) {
+      this.getDailyWeather();
+    }
   }
 
   public isSelectedLanguage(item: string): boolean {
@@ -102,6 +102,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public setSelectedDay(item: WeatherForDay): void {
     this.selectedDay = item;
+  }
+
+  private clearSearchLocation(): void {
+    this.searchLocation.setValue('');
+    this.receivedLocations = [];
   }
 
   private getDailyWeather(): void {
@@ -119,7 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     };
     this.loadingWeather = true;
 
-    this.getWeatherSub = this.weather
+    this.getWeatherSub = this.weatherService
       .getDailyWeather(
         this.currentLocation.locationKey,
         querryParams
