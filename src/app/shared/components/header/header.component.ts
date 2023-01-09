@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public greetingUk = '';
   private subscription!: Subscription;
 
-  constructor(private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.subscription = timer(0, 1000)

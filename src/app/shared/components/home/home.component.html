@@ -1,7 +1,7 @@
 <div class="container d-flex fw-wrap">
   <section class="section left">
     <app-header [currentLocal]="selectedLocal"></app-header>
-    <button (click)="changeUnit()">Change Unit</button>
+    <!-- <button (click)="changeUnit()">Change Unit</button> -->
     <ng-container *ngIf="!loadingWeather; else loading">
       <ng-container *ngIf="receivedWeatherDays?.length; else empty">
         <app-days-slider
@@ -55,11 +55,11 @@
 </div>
 <ng-template #loading>
   <div>
-    Loading...
+    <span class="loader"></span>
   </div>
 </ng-template>
 <ng-template #empty>
-  <div>
+  <!-- <div>
     No Data...
-  </div>
+  </div> -->
 </ng-template>
