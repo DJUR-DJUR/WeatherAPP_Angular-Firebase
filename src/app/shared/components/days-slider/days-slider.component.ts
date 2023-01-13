@@ -13,7 +13,7 @@ export class DaysSliderComponent implements AfterContentInit {
   public currentLocal: string = '';
 
   @Input()
-  public weatherDays: WeatherForDay[] = [];
+  public weatherDays: WeatherForDay[] | null = null;
 
   @Output()
   public onSelect = new EventEmitter<WeatherForDay>();
@@ -21,7 +21,7 @@ export class DaysSliderComponent implements AfterContentInit {
   private selectedItem!: WeatherForDay;
 
   public ngAfterContentInit(): void {
-    this.selectedItem = this.weatherDays[0];
+    this.weatherDays ? this.selectedItem = this.weatherDays[0] : null;
   }
 
   public onItemClick(item: WeatherForDay) {
