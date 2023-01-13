@@ -19,12 +19,12 @@ import { getWeatherDaysMapper } from '../../utils/getWeatherDays.mapper';
 export class HomeComponent implements OnInit, OnDestroy {
 
   public searchLocation!: FormControl;
-  public receivedLocations!: Location[];
+  public receivedLocations: Location[] | null = null;
   public currentLocation!: Location;
   public languages = ['uk', 'en'];
   public selectedLocal = 'en';
-  public receivedWeatherDays!: WeatherForDay[];
-  public selectedDay!: WeatherForDay;
+  public receivedWeatherDays: WeatherForDay[] | null = null;
+  public selectedDay: WeatherForDay | null = null;
   public loadingWeather = false;
 
   private selectedLanguage = 'en';
@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private clearSearchLocation(): void {
     this.searchLocation.setValue('');
-    this.receivedLocations = [];
+    this.receivedLocations = null;
   }
 
   private getDailyWeather(): void {
