@@ -1,65 +1,64 @@
 <div class="container d-flex fw-wrap">
   <section class="section left">
     <app-header [currentLocal]="selectedLocal"></app-header>
-    <button (click)="changeUnit()">Change Unit</button>
+    <!-- <button (click)="changeUnit()">Change Unit</button> -->
     <ng-container *ngIf="!loadingWeather; else loading">
       <ng-container *ngIf="receivedWeatherDays?.length; else empty">
         <app-days-slider
           [currentLocal]="selectedLocal"
           [weatherDays]="receivedWeatherDays"
-          (onSelect)="setSelectedDay($event)"
-        ></app-days-slider>
+          (onSelect)="setSelectedDay($event)">
+        </app-days-slider>
       </ng-container>
     </ng-container>
   </section>
-    <section class="section right">
-      <div class="sidebar-header d-flex j-betweene">
-        <div class="header-item d-flex j-betweene a-center">
-          <img src="/assets/images/location.png" alt="location">
-          <div class="input-wraper">
-            <input
-            class="form-control"
+  <section class="section right">
+    <div class="sidebar-header d-flex j-betweene">
+      <div class="header-item d-flex j-betweene a-center">
+        <img src="/assets/images/location.png" alt="location">
+        <div class="input-wraper">
+          <input
             [formControl]="searchLocation"
+            class="form-control"
             placeholder="Location"
             type="text"
           >
-            <ul *ngIf="receivedLocations">
-              <li *ngFor="let item of receivedLocations" class="nav-item">
-                <a (click)="selectLocation(item)">
-                  {{item.localizedName}}, {{item.countryName}}
-                </a>
-              </li>
-            </ul>
-          </div>
-          <img src="/assets/images/done.png" alt="done">
+          <ul *ngIf="receivedLocations">
+            <li *ngFor="let item of receivedLocations" class="nav-item">
+              <a (click)="selectLocation(item)">
+                {{item.localizedName}}, {{item.countryName}}
+              </a>
+            </li>
+          </ul>
         </div>
-        <div class="header-item d-flex j-betweene a-center">
-          <div *ngFor="let item of languages" (click)="changeLanguage(item)">
-            <app-button
-              buttonClass="btn btn-primary"
-              [buttonText]="item"
-              [isActive]="isSelectedLanguage(item)">
-            </app-button>
-          </div>
+        <img src="/assets/images/done.png" alt="done">
+      </div>
+      <div class="header-item d-flex j-betweene a-center">
+        <div *ngFor="let item of languages" (click)="changeLanguage(item)">
+          <app-button
+            buttonClass="btn btn-primary"
+            [buttonText]="item"
+            [isActive]="isSelectedLanguage(item)">
+          </app-button>
         </div>
       </div>
-      <ng-container *ngIf="selectedDay" >
-        <app-sidebar
-          [currentLocal]="selectedLocal"
-          [currentDay]="selectedDay"
-          [currentLocation]="currentLocation"
-        >
-        </app-sidebar>
-      </ng-container>
-    </section>
+    </div>
+    <ng-container *ngIf="selectedDay">
+      <app-sidebar
+        [currentLocal]="selectedLocal"
+        [currentDay]="selectedDay"
+        [currentLocation]="currentLocation">
+      </app-sidebar>
+    </ng-container>
+  </section>
 </div>
 <ng-template #loading>
   <div>
-    Loading...
+    <span class="loader"></span>
   </div>
 </ng-template>
 <ng-template #empty>
-  <div>
+  <!-- <div>
     No Data...
-  </div>
+  </div> -->
 </ng-template>
